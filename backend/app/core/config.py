@@ -5,6 +5,8 @@ BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
 SADTALKER_DIR = os.path.join(BASE_DIR, "ai_models", "SadTalker")
 DATA_DIR = os.path.join(BASE_DIR, "data")
 DOCUMENT_UPLOAD_DIR = os.path.join(DATA_DIR, "documents")
+AUDIO_DIR = os.path.join(DATA_DIR,"audio/answers")
+
 VECTOR_DB_DIR = os.path.join(BASE_DIR, "backend", "app", "vectorstore", "chroma_db")
 
 INPUT_IMAGE_DIR = os.path.join(DATA_DIR, "input_images")

@@ -21,6 +21,7 @@ SUMMARY_KEYWORDS = [
     "what is this document about",
     "key points",
     "gist",
+    "ELI5"
 ]
 
 def is_summary_question(question: str) -> bool:
