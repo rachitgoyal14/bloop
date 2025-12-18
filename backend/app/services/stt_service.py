@@ -2,7 +2,7 @@ import tempfile
 import os
 import assemblyai as aai
 
-from app.core.config import settings
+from core.config import settings
 
 
 class STTService:

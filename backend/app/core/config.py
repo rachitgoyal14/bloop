@@ -26,11 +26,23 @@ os.makedirs(VECTOR_DB_DIR, exist_ok=True)
 # ==============================
 
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
+class Settings:
+    GROQ_API_KEY: str
+    ASSEMBLYAI_API_KEY: str
 
-if not GROQ_API_KEY:
-    raise RuntimeError("GROQ_API_KEY not set in environment variables")
+    def __init__(self):
+        self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+        self.ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
 
-if not ASSEMBLYAI_API_KEY:
-    raise RuntimeError("ASSEMBLYAI_API_KEY not set in environment variables")
+        missing = []
+        if not self.GROQ_API_KEY:
+            missing.append("GROQ_API_KEY")
+        if not self.ASSEMBLYAI_API_KEY:
+            missing.append("ASSEMBLYAI_API_KEY")
+
+        if missing:
+            raise RuntimeError(
+                f"Missing required environment variables: {', '.join(missing)}"
+            )
+
+settings = Settings()

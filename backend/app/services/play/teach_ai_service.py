@@ -1,7 +1,7 @@
 import json
-from app.services.llm_service import LLMService
-from app.core.prompts.teach_ai_prompt import build_teach_ai_prompt
-from app.services.learning_context_service import load_learning_context
+from services.llm_service import LLMService
+from core.prompts.teach_ai_prompt import build_teach_ai_prompt
+from services.learning_context_service import load_learning_context
 
 
 class TeachAIService:

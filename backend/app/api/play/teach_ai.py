@@ -2,9 +2,9 @@ from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 
-from app.services.play.teach_ai_service import TeachAIService
-from app.services.stt_service import STTService
-from app.services.tts_service import text_to_speech  
+from services.play.teach_ai_service import TeachAIService
+from services.stt_service import STTService
+from services.tts_service import text_to_speech  
 
 router = APIRouter(prefix="/play/teach-ai", tags=["Play | Teach AI"])
 
