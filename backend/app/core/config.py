@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
 
@@ -18,3 +20,29 @@ os.makedirs(INPUT_AUDIO_DIR, exist_ok=True)
 os.makedirs(OUTPUT_VIDEO_DIR, exist_ok=True)
 os.makedirs(DOCUMENT_UPLOAD_DIR, exist_ok=True)
 os.makedirs(VECTOR_DB_DIR, exist_ok=True)
+
+# ==============================
+# API KEYS (ENVIRONMENT VARIABLES)
+# ==============================
+
+
+class Settings:
+    GROQ_API_KEY: str
+    ASSEMBLYAI_API_KEY: str
+
+    def __init__(self):
+        self.GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+        self.ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
+
+        missing = []
+        if not self.GROQ_API_KEY:
+            missing.append("GROQ_API_KEY")
+        if not self.ASSEMBLYAI_API_KEY:
+            missing.append("ASSEMBLYAI_API_KEY")
+
+        if missing:
+            raise RuntimeError(
+                f"Missing required environment variables: {', '.join(missing)}"
+            )
+
+settings = Settings()
