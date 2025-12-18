@@ -43,3 +43,19 @@ async def ask_question (
         })
 
     return {"answer":answer}
+
+@router.post("/ask-from-image")
+def ask_from_image(
+    image: UploadFile = File(...),
+    document_id: str | None = None
+):
+    path = save_file(image, "data/uploads/images")
+
+    answer = answer_ques(
+        question=None,
+        document_id=document_id,
+        image_path=path
+    )
+
+    return {"answer": answer}
+
