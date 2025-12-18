@@ -1,4 +1,6 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../"))
 
@@ -18,3 +20,17 @@ os.makedirs(INPUT_AUDIO_DIR, exist_ok=True)
 os.makedirs(OUTPUT_VIDEO_DIR, exist_ok=True)
 os.makedirs(DOCUMENT_UPLOAD_DIR, exist_ok=True)
 os.makedirs(VECTOR_DB_DIR, exist_ok=True)
+
+# ==============================
+# API KEYS (ENVIRONMENT VARIABLES)
+# ==============================
+
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+ASSEMBLYAI_API_KEY = os.getenv("ASSEMBLYAI_API_KEY")
+
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY not set in environment variables")
+
+if not ASSEMBLYAI_API_KEY:
+    raise RuntimeError("ASSEMBLYAI_API_KEY not set in environment variables")

@@ -3,7 +3,7 @@ from api.sad_talker_video import router as sad_talker_router
 from api.qa import router as qa
 from api.tts import router as tts_router
 
-app = FastAPI(title="Bloom")
+app = FastAPI(title="Bloop!")
 
 app.include_router(sad_talker_router)
 app.include_router(qa)
