@@ -3,3 +3,7 @@ uvicorn
 python-multipart
 pydantic
 python-dotenv
+assemblyai
+torch
+langchain
+
