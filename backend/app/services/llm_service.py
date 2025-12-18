@@ -8,7 +8,7 @@ class LLMService:
 
     def complete(self, prompt: str) -> str:
         response = self.client.chat.completions.create(
-            model="llama3-70b-8192",
+            model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": "You are a strict evaluator. Return JSON only."},
                 {"role": "user", "content": prompt}

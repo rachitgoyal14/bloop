@@ -1,10 +1,48 @@
+def build_teach_ai_start_prompt(
+    concept: str,
+    learning_goals: list,
+    level: str
+) -> str:
+    goals = "\n".join([f"- {g}" for g in learning_goals])
+
+    return f"""
+You are an AI tutor.
+
+Concept: {concept}
+Learner level: {level}
+
+Learning goals:
+{goals}
+
+Task:
+Ask the learner ONE clear, open-ended question asking them
+to explain this concept in their own words.
+
+Rules:
+- Do NOT evaluate
+- Do NOT give hints
+- Do NOT explain the concept
+- Ask only ONE question
+
+Output ONLY the question text.
+"""
+
+
+
 def build_teach_ai_prompt(
     concept: str,
     learning_goals: list,
     explanation: str,
-    level: str
+    level: str,
+    history: list | None = None
 ) -> str:
     goals = "\n".join([f"- {g}" for g in learning_goals])
+    history = history or []
+
+    history_text = "\n".join(
+        f"{turn['role'].upper()}: {turn['content']}"
+        for turn in history
+    )
 
     level = level.lower()
 
@@ -44,13 +82,17 @@ You are evaluating a learner teaching an AI a concept.
 
 Concept: {concept}
 
+Conversation so far:
+{history_text}
+
 {level_rules}
 
 Learning goals:
 {goals}
 
-User explanation:
+Latest user explanation:
 \"\"\"{explanation}\"\"\"
+
 
 Scoring instructions:
 For each learning goal, score:
@@ -62,6 +104,7 @@ Important:
 - Be strict according to the learner level.
 - Do NOT provide hints or teaching.
 - ONLY evaluate the learner's explanation.
+- Consider conversation context if relevant.
 
 Return JSON ONLY in this format:
 {{
