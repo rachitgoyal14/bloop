@@ -47,8 +47,12 @@ async def ask_question (
 @router.post("/ask-from-image")
 def ask_from_image(
     image: UploadFile = File(...),
-    document_id: str | None = None
+    document_id: str | None = None,     
+    video_enabled: bool = False,
+    image_path: str = "D:/bloop/data/avatars/sir-isaac-newton.webp"
+
 ):
+    job_id = str(uuid.uuid4())
     path = save_file(image, "data/uploads/images")
 
     answer = answer_ques(
@@ -56,6 +60,21 @@ def ask_from_image(
         document_id=document_id,
         image_path=path
     )
+    response = {
+        "answer": answer,
+        "video_enabled": video_enabled
+    }
+    if video_enabled:
+        audio_path = text_to_speech(answer, job_id)
+        run_sadtalker(image_path, audio_path, job_id)
+
+        response.update({
+            "job_id": job_id,
+            "video_status": "processing",
+            "audio_available": True
+        })
+
+
 
     return {"answer": answer}
 
