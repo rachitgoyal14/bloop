@@ -9,6 +9,8 @@ from api.roadmap import router as roadmap_router
 # from api.manim_generator import router as manim_generator
 from api.play.find_mistake import router as find_mistake
 from api.play.complete_missing_link import router as complete_missing_link
+from api.manim_generator import router as manim_generator
+
 
 app = FastAPI(title="Bloop!")
 
@@ -23,6 +25,7 @@ app.include_router(roadmap_router)
 app.include_router(find_mistake)
 app.include_router(complete_missing_link)
 
+app.include_router(manim_generator)
 
 @app.get("/")
 def health():
