@@ -3,6 +3,8 @@ from langchain_nomic import NomicEmbeddings
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from core.config import VECTOR_DB_DIR
+from services.vision_service import extract_text_from_image
+
 load_dotenv()
 
 llm = ChatGroq(
@@ -12,6 +14,10 @@ llm = ChatGroq(
     timeout=30,
     max_retries=2,
 )
+
+
+
+
 
 SUMMARY_KEYWORDS = [
     "summarize",
@@ -29,7 +35,42 @@ def is_summary_question(question: str) -> bool:
     return any(k in q for k in SUMMARY_KEYWORDS)
 
 
-def answer_ques(question: str, document_id: str | None = None) -> str:
+def extract_question_from_text(ocr_text: str) -> str:
+    prompt = f"""
+You are an educational assistant.
+
+From the text below, extract the MAIN question being asked.
+If multiple questions exist, pick the most relevant one.
+If no clear question exists, rewrite the text into a clear question.
+
+Return ONLY the question.
+
+Text:
+{ocr_text}
+
+Question:
+"""
+    response = llm.invoke(prompt)
+    return response.content.strip()
+
+
+
+def answer_ques(
+        question: str, 
+        document_id: str | None = None,
+        image_path:str|None=None
+        ) -> str:
+    
+    if image_path:
+        ocr_text = extract_text_from_image(image_path)
+
+        if not ocr_text.strip():
+            return "I could not extract any readable text from the image."
+
+        question = extract_question_from_text(ocr_text)
+
+    if not question or not question.strip():
+        return "No valid question could be determined."
     is_summary = is_summary_question(question)
 
     if document_id:
