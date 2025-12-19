@@ -38,8 +38,6 @@ pydub==0.25.1
 pyglet==2.1.11
 pyglm==2.8.3
 Pygments==2.19.2
-pyobjc-core==12.1
-pyobjc-framework-Cocoa==12.1
 python-dotenv==1.2.1
 requests==2.32.5
 rich==14.2.0

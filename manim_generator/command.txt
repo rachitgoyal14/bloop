@@ -1,0 +1,2 @@
+uvicorn manim_generator.main:app --reload --port 8001
+

@@ -18,3 +18,8 @@ __pycache__/
 /tests/temp/
 coverage.xml
 media/
+venv/
+venv
+manimEnvironment
+manimEnvironment/
+/manimEnvironment
