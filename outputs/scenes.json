@@ -3,43 +3,33 @@
   "scenes": [
     {
       "scene_id": 1,
-      "concept": "Definition of a quadratic equation",
-      "visual": "Display the general form ax^2 + bx + c = 0 with animated coefficients"
+      "concept": "Standard form of a quadratic equation",
+      "visual": "Display the equation ax^2 + bx + c = 0 with animated coefficients appearing"
     },
     {
       "scene_id": 2,
       "concept": "Graph of a quadratic function",
-      "visual": "Plot a parabola y = ax^2 + bx + c showing vertex and axis of symmetry"
+      "visual": "Plot a parabola on coordinate axes highlighting vertex and axis of symmetry"
     },
     {
       "scene_id": 3,
-      "concept": "Standard form and vertex form",
-      "visual": "Transform equation from standard form to vertex form with step-by-step animation"
+      "concept": "Factoring method",
+      "visual": "Show factorization of a quadratic expression into two binomials step-by-step"
     },
     {
       "scene_id": 4,
-      "concept": "Factoring method",
-      "visual": "Show factoring of a quadratic expression into two binomials visually"
+      "concept": "Completing the square",
+      "visual": "Visualize transforming ax^2 + bx + c into a perfect square trinomial"
     },
     {
       "scene_id": 5,
-      "concept": "Completing the square",
-      "visual": "Animate the process of completing the square to solve quadratic equations"
+      "concept": "Quadratic formula",
+      "visual": "Present the quadratic formula with animated substitution of coefficients"
     },
     {
       "scene_id": 6,
-      "concept": "Quadratic formula derivation",
-      "visual": "Derive the quadratic formula step-by-step with algebraic transformations"
-    },
-    {
-      "scene_id": 7,
-      "concept": "Using the quadratic formula",
-      "visual": "Substitute values into the quadratic formula and solve for roots visually"
-    },
-    {
-      "scene_id": 8,
       "concept": "Discriminant and nature of roots",
-      "visual": "Show discriminant calculation and illustrate different root types on graph"
+      "visual": "Illustrate discriminant calculation and show different parabola graphs for positive, zero, and negative discriminants"
     }
   ]
 }
