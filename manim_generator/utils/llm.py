@@ -24,7 +24,7 @@ deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT")  # your deployment name
   # latest supported version
 
 
-def call_llm(prompt: str, temperature=0.3):
+def call_llm(prompt: str, temperature=0):
     response = client.chat.completions.create(
         model=deployment_name,
         messages=[{"role": "user", "content": prompt}],

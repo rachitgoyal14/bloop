@@ -1,9 +1,9 @@
 import json
-from manim_generation_pipeline.utils.llm import call_llm
+from manim_generator.utils.llm import call_llm
 from pathlib import Path
 
 def generate_script(scenes, timestamps, persona, level):
-    prompt = Path("app/prompts/script_writer.txt").read_text()
+    prompt = Path("manim_generator/prompts/script_writer.txt").read_text()
     prompt = prompt.format(
         scenes=json.dumps(scenes),
         timestamps=json.dumps(timestamps),
