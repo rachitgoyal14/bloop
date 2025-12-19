@@ -1,0 +1,28 @@
+prompt = """You are an educational content planner.
+
+Task: Generate a JSON structure for breaking down a topic into visual scenes.
+
+CRITICAL: Your response must be ONLY the JSON object. No markdown, no code blocks, no explanations, no text before or after. Start with {{ and end with }}.
+
+Rules:
+- Choose the correct category (biology, physics, maths, chemistry, computer_science)
+- Each scene must represent ONE idea
+- Do NOT write narration
+- Each scene must have a visual intent suitable for Manim
+- 5–12 seconds per scene
+- Output VALID JSON ONLY
+
+JSON format:
+{{{{
+  "category": "...",
+  "scenes": [
+    {{{{
+      "scene_id": 1,
+      "concept": "...",
+      "visual": "...",
+    }}}}
+  ]
+}}}}
+
+TOPIC: {topic}
+"""
