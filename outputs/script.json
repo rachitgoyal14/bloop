@@ -1,0 +1,34 @@
+[
+  {
+    "scene_id": 1,
+    "script": "A quadratic equation is a polynomial equation of degree two, which means the highest power of the variable is two. It is generally written as ax squared plus bx plus c equals zero, where a, b, and c are constants, and a is not zero."
+  },
+  {
+    "scene_id": 2,
+    "script": "When we graph a quadratic function, it forms a curve called a parabola. This parabola has a highest or lowest point called the vertex, and it is symmetric about a vertical line known as the axis of symmetry."
+  },
+  {
+    "scene_id": 3,
+    "script": "The standard form of a quadratic equation is ax squared plus bx plus c. We can rewrite it into vertex form, which is a times the quantity x minus h squared plus k, by completing the square. This reveals the vertex coordinates directly."
+  },
+  {
+    "scene_id": 4,
+    "script": "Factoring is a method to solve quadratic expressions by expressing them as the product of two binomials. This helps us find the roots of the equation by setting each binomial equal to zero."
+  },
+  {
+    "scene_id": 5,
+    "script": "Completing the square involves creating a perfect square trinomial from a quadratic expression. This technique allows us to rewrite the equation in vertex form and solve for the variable more easily."
+  },
+  {
+    "scene_id": 6,
+    "script": "The quadratic formula is derived by completing the square on the general quadratic equation. It provides a direct way to find the roots using the coefficients a, b, and c."
+  },
+  {
+    "scene_id": 7,
+    "script": "By substituting the values of a, b, and c into the quadratic formula, we calculate the roots of the equation. These roots are the solutions where the parabola crosses the x-axis."
+  },
+  {
+    "scene_id": 8,
+    "script": "The discriminant, found by b squared minus four a c, tells us the nature of the roots. If it is positive, there are two real roots; if zero, one real root; and if negative, two complex roots."
+  }
+]
