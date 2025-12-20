@@ -5,8 +5,8 @@ import sys
 from core.config import SADTALKER_DIR, INPUT_IMAGE_DIR, INPUT_AUDIO_DIR, OUTPUT_VIDEO_DIR
 
 
-def run_sadtalker(image_path: str , audio_path: str,job_id: str)-> str:
-    job_id = str(uuid.uuid4())
+def run_sadtalker(image_path: str , audio_path: str,job_id: str)-> None:
+    # job_id = str(uuid.uuid4())
     output_dir = os.path.join(OUTPUT_VIDEO_DIR, job_id)
     os.makedirs(output_dir, exist_ok=True)
 

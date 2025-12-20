@@ -5,7 +5,7 @@ from core.config import INPUT_IMAGE_DIR,INPUT_AUDIO_DIR,OUTPUT_VIDEO_DIR
 from utils.file_utils import find_sadtaker_video
 import os
 import shutil
-
+import uuid
 
 router = APIRouter(prefix="/video",tags=["SadTalker Vdeo"])
 
@@ -13,6 +13,7 @@ router = APIRouter(prefix="/video",tags=["SadTalker Vdeo"])
 async def generate_video(image: UploadFile = File(...), 
                         audio: UploadFile = File(...)
                     ):
+    job_id = str(uuid.uuid4())
     image_path = os.path.join(INPUT_IMAGE_DIR, image.filename)
     audio_path = os.path.join(INPUT_AUDIO_DIR, audio.filename)
 
@@ -22,7 +23,7 @@ async def generate_video(image: UploadFile = File(...),
     with open(audio_path,"wb") as audio_file:
         shutil.copyfileobj(audio.file,audio_file)
 
-    job_id = run_sadtalker(image_path, audio_path)
+    job_id = run_sadtalker(image_path, audio_path,job_id)
     
     return {
         "status": "processing",
