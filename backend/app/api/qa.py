@@ -7,7 +7,7 @@ from utils.file_utils import save_file
 from core.config import DOCUMENT_UPLOAD_DIR
 import uuid
 
-router = APIRouter(prefix="/qa",tags=["Docuemt ask enpoitns"])
+router = APIRouter(prefix="/qa",tags=["Document Ask Endpoints"])
 
 @router.post("/upload-doc")
 async def upload_file(file:UploadFile= File(...)):
