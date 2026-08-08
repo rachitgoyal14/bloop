@@ -9,6 +9,7 @@ from services import chat_service, message_service
 from utils.file_utils import save_file
 from core.config import DOCUMENT_UPLOAD_DIR
 from uuid import UUID
+from typing import Optional
 import uuid
 import requests
 
@@ -56,17 +57,22 @@ async def upload_file(
 
 @router.post("/ask")
 async def ask_question(
-    chat_id: UUID,
     question: str,
+    chat_id: Optional[UUID] = None,
     document_id: str | None = None,
     video_enabled: bool = False,
     face_enabled: bool = False,
     db: Session = Depends(get_db)
 ):
     """Ask a question in a chat session"""
-    chat = chat_service.get_chat(db, chat_id)
-    if not chat:
-        raise HTTPException(status_code=404, detail="Chat not found")
+    # Auto-create chat if not provided
+    if chat_id is None:
+        chat = chat_service.create_chat(db)
+        chat_id = chat.chat_id
+    else:
+        chat = chat_service.get_chat(db, chat_id)
+        if not chat:
+            raise HTTPException(status_code=404, detail="Chat not found")
     
     # Validation: face_enabled requires video_enabled
     if face_enabled and not video_enabled:
@@ -101,6 +107,7 @@ async def ask_question(
     
     response = {
         "answer": answer,
+        "chat_id": str(chat_id),
         "video_enabled": video_enabled,
         "face_enabled": face_enabled
     }

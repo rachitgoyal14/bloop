@@ -13,11 +13,37 @@ from api.manim_generator import router as manim_generator
 from api.chat_history import router as chat_history_router
 from core.database import engine, Base
 from fastapi.middleware.cors import CORSMiddleware
-
-# Create database tables
-Base.metadata.create_all(bind=engine)
+from sqlalchemy import text
 
 app = FastAPI(title="Bloop!")
+
+# Test database connection and create tables
+@app.on_event("startup")
+async def startup_event():
+    try:
+        # Test connection
+        with engine.connect() as connection:
+            result = connection.execute(text("SELECT 1"))
+            print("✅ Database connection successful!")
+            
+        # Create tables
+        Base.metadata.create_all(bind=engine)
+        print("✅ Database tables created/verified!")
+        
+        # Verify tables exist
+        with engine.connect() as connection:
+            tables = ['chats', 'messages', 'documents', 'videos', 'roadmaps']
+            for table in tables:
+                try:
+                    result = connection.execute(text(f"SELECT COUNT(*) FROM {table}"))
+                    count = result.fetchone()[0]
+                    print(f"✅ Table '{table}' verified - Row count: {count}")
+                except Exception as e:
+                    print(f"⚠️  Table '{table}' check failed: {e}")
+                    
+    except Exception as e:
+        print(f"❌ Database initialization failed: {e}")
+        print("⚠️  Application will continue but database features may not work!")
 
 app.include_router(sad_talker_router)
 app.include_router(qa)
